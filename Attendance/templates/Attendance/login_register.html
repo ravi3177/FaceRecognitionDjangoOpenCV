@@ -1,0 +1,87 @@
+{% extends "Attendance/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container my-20 mx-32 w-10/12 shadow-2xl rounded-xl bg-white">
+    <div class="login--wrapper">
+        <div class="row">
+            <div class="col-lg-5  bg-slate-700 rounded-lg">
+                <img src="/static/img/school.svg" alt="school image" class="img-fluid h-hlogin">
+            </div>
+              <!-- This is the Login page-->
+            {% if page == 'login' %}
+            <div class="col-lg-6 my-32 flex flex-row justify-center">
+                <form method='post' class="form h-full">
+                    {% csrf_token %}
+                    <div class="w-fit mx-32 mb-8">
+                        <div class="rounded-full border-2">
+                            <lord-icon src="https://cdn.lordicon.com/dxjqoygy.json" trigger="loop" delay="5"
+                                colors="primary:#3080e8,secondary:#08a88a" stroke="35" state="morph-group"
+                                style="width:80px;height:80px">
+                            </lord-icon>
+                        </div>
+                        <div>
+                            <h4 class="font-mono text-lg text-center">Login</h4>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="ml-16">
+                            <label for="exampleInputEmail1"
+                                class="form-label mb-2 font-mono text-md text-center">Username</label>
+                            <input type="text" class="form-control w-72 " name="username" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="ml-16">
+                            <label for="exampleInputPassword1"
+                                class="form-label form-label mb-2 font-mono text-md text-center ">Password</label>
+                            <input type="password" class="form-control w-72" name="password" id="exampleInputPassword1"
+                                placeholder="password">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="ml-32 mb-4">
+                            <button type="submit"
+                                class="btn bg-blue-500 w-32 hover:bg-white border-2 border-sky-400 delay-100">Login</button>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4 ml-16">
+                        <p>Don't have an account ? <a class="text-blue-500 underline" href="{% url 'register' %}"
+                                role="button">Register Now</a>
+                        </p>
+                    </div>
+
+                </form>
+                {% else %}
+
+                <!-- This is the Register page-->
+                <div class="col-lg-6 my-28 bg-slate-300 mx-10 rounded-xl">
+                    <form method='post'>
+                        <div class="mb-24 mt-12">
+                            <h4 class="font-mono text-2xl text-center">Register</h4>
+                        </div>
+                        <div class="ml-4 font-sans font-medium text-sm">
+                            {% csrf_token %}
+                            {{form.as_table}}
+                        </div>
+                        <div class="ml-38 my-4 text-center">
+                            <button type="submit"
+                                class="btn bg-slate-900 text-white w-32 hover:bg-white hover:text-gray-800 border-2 border-black delay-100">Register</button>
+                        </div>
+                        <div class="mb-4 text-center">
+                            <p class="text-slate-700 text-sm">Already have an account ? <a
+                                    class="text-blue-500 underline" href="{% url 'login' %}" role="button">Login</a>
+                            </p>
+                        </div>
+
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
